@@ -1,0 +1,16 @@
+CREATE DATABASE IF NOT EXISTS auth_app;
+USE auth_app;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('farmer','labour') NOT NULL DEFAULT 'labour',
+    is_verified TINYINT(1) DEFAULT 0,
+    otp_code VARCHAR(6) DEFAULT NULL,
+    otp_expires_at DATETIME DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
