@@ -1,0 +1,98 @@
+╔═══════════════════════════════════════════════════════════╗
+║           LABOURLINK DEPLOYMENT QUICK CARD                ║
+║         labourlink.labxco.cloud/labourlink/               ║
+╚═══════════════════════════════════════════════════════════╝
+
+┌───────────────────────────────────────────────────────────┐
+│ STEP 1: PREPARE                                           │
+└───────────────────────────────────────────────────────────┘
+  □ Run: deploy.bat (Windows) or ./deploy.sh (Linux/Mac)
+  □ Creates: labourlink-deploy/ folder
+
+┌───────────────────────────────────────────────────────────┐
+│ STEP 2: CONFIGURE                                         │
+└───────────────────────────────────────────────────────────┘
+  □ Edit: labourlink-deploy/config.php
+  □ Update: DB_USER, DB_PASS, DB_NAME
+
+┌───────────────────────────────────────────────────────────┐
+│ STEP 3: UPLOAD APP FILES                                  │
+└───────────────────────────────────────────────────────────┘
+  □ From: labourlink-deploy/* (all files except redirect)
+  □ To: /public_html/labourlink/
+  
+  Files to upload:
+  ✓ .htaccess
+  ✓ index.php, dashboard.php, profile.php, etc.
+  ✓ config.php (edited)
+  ✓ api/ folder
+  ✓ assets/ folder
+  ✓ All other .php files
+
+┌───────────────────────────────────────────────────────────┐
+│ STEP 4: UPLOAD REDIRECT                                   │
+└───────────────────────────────────────────────────────────┘
+  □ From: labourlink-deploy/redirect.htaccess
+  □ To: /public_html/.htaccess (RENAME IT!)
+  
+  This redirects root → /labourlink/
+
+┌───────────────────────────────────────────────────────────┐
+│ STEP 5: DATABASE                                          │
+└───────────────────────────────────────────────────────────┘
+  □ Login: Hostinger cPanel
+  □ Open: phpMyAdmin
+  □ Import: SETUP_QUERIES.sql
+
+┌───────────────────────────────────────────────────────────┐
+│ STEP 6: TEST                                              │
+└───────────────────────────────────────────────────────────┘
+  □ Visit: https://labourlink.labxco.cloud/
+  □ Should redirect to: /labourlink/
+  □ Login page displays with styles
+  □ Can register and login
+  □ Dashboard works
+
+╔═══════════════════════════════════════════════════════════╗
+║                    FILE LOCATIONS                         ║
+╚═══════════════════════════════════════════════════════════╝
+
+/public_html/
+├── .htaccess ← redirect.htaccess (renamed)
+│
+└── labourlink/
+    ├── .htaccess ← from labourlink-deploy
+    ├── index.php ← from labourlink-deploy
+    ├── config.php ← from labourlink-deploy (edited!)
+    ├── (all other files)
+    ├── api/
+    └── assets/
+
+╔═══════════════════════════════════════════════════════════╗
+║                   TROUBLESHOOTING                         ║
+╚═══════════════════════════════════════════════════════════╝
+
+❌ Database Error
+   → Check config.php credentials
+
+❌ 404 Not Found
+   → Verify files in /labourlink/ folder
+
+❌ No Redirect
+   → Check /public_html/.htaccess exists
+
+❌ Styles Missing
+   → Verify /labourlink/assets/ uploaded
+   → Clear browser cache (Ctrl+F5)
+
+╔═══════════════════════════════════════════════════════════╗
+║                    NEED HELP?                             ║
+╚═══════════════════════════════════════════════════════════╝
+
+📖 VISUAL_GUIDE.md ← Best for beginners
+📖 SETUP_INSTRUCTIONS.txt ← Quick reference
+📖 QUICK_START.md ← Fast deployment
+📖 DEPLOYMENT.md ← Detailed guide
+📖 DEPLOYMENT_CHECKLIST.md ← Complete checklist
+
+═══════════════════════════════════════════════════════════

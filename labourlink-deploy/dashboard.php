@@ -8,8 +8,8 @@ $role      = $_SESSION['role'] ?? 'labour';
 $isFarmer   = $role === 'farmer';
 $initials   = strtoupper(substr($username, 0, 2));
 $navGradient = $isFarmer
-    ? 'linear-gradient(135deg,#10b981,#059669)'
-    : 'linear-gradient(135deg,#f97316,#ea580c)';
+    ? 'linear-gradient(135deg,#6c63ff,#3b82f6)'
+    : 'linear-gradient(135deg,#10b981,#059669)';
 $bannerGradient = $navGradient;
 
 // ── Fetch weather via wttr.in (no API key needed) ──
@@ -80,8 +80,8 @@ function farmTip(int $code): string {
       <i class="fa-solid fa-bars"></i>
     </button>
     <div class="dash-nav-brand">
-      <i class="fa-solid fa-<?= $isFarmer ? 'tractor' : 'person-digging' ?>"></i>
-      <span><?= $isFarmer ? 'Farmer' : 'Labour' ?></span>
+      <i class="fa-solid fa-seedling"></i>
+      <span>LabourLink</span>
     </div>
     <div class="dash-nav-right">
       <button class="nav-icon-btn" title="Notifications">
@@ -112,7 +112,7 @@ function farmTip(int $code): string {
       <a href="profile.php?tab=settings" class="drawer-link">
         <i class="fa-solid fa-gear"></i> Settings
       </a>
-      <a href="alerts.php" class="drawer-link">
+      <a href="#" class="drawer-link" onclick="closeDrawer(); return false;">
         <i class="fa-solid fa-bell"></i> Notifications
       </a>
       <a href="#" class="drawer-link" onclick="closeDrawer(); return false;">
@@ -197,18 +197,14 @@ function farmTip(int $code): string {
           <span>Find Labour</span>
         </div>
       </a>
-      <a href="my-listings.php" style="text-decoration:none;">
-        <div class="action-tile" style="--clr:#10b981;">
-          <div class="action-tile-icon"><i class="fa-solid fa-list-check"></i></div>
-          <span>My Listings</span>
-        </div>
-      </a>
-      <a href="schedule.php" style="text-decoration:none;">
-        <div class="action-tile" style="--clr:#3b82f6;">
-          <div class="action-tile-icon"><i class="fa-solid fa-calendar-days"></i></div>
-          <span>Schedule</span>
-        </div>
-      </a>
+      <div class="action-tile" style="--clr:#10b981;">
+        <div class="action-tile-icon"><i class="fa-solid fa-list-check"></i></div>
+        <span>My Listings</span>
+      </div>
+      <div class="action-tile" style="--clr:#3b82f6;">
+        <div class="action-tile-icon"><i class="fa-solid fa-calendar-days"></i></div>
+        <span>Schedule</span>
+      </div>
     </div>
 
     <!-- Recent Activity -->
@@ -277,30 +273,22 @@ function farmTip(int $code): string {
     <!-- Quick Actions -->
     <p class="dash-section-title">Quick Actions</p>
     <div class="action-grid">
-      <a href="find-jobs.php" style="text-decoration:none;">
-        <div class="action-tile" style="--clr:#10b981;">
-          <div class="action-tile-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-          <span>Find Jobs</span>
-        </div>
-      </a>
-      <a href="applications.php" style="text-decoration:none;">
-        <div class="action-tile" style="--clr:#f59e0b;">
-          <div class="action-tile-icon"><i class="fa-solid fa-file-alt"></i></div>
-          <span>Applications</span>
-        </div>
-      </a>
-      <a href="profile.php" style="text-decoration:none;">
-        <div class="action-tile" style="--clr:#3b82f6;">
-          <div class="action-tile-icon"><i class="fa-solid fa-star"></i></div>
-          <span>My Profile</span>
-        </div>
-      </a>
-      <a href="nearby-jobs.php" style="text-decoration:none;">
-        <div class="action-tile" style="--clr:#059669;">
-          <div class="action-tile-icon"><i class="fa-solid fa-map-location-dot"></i></div>
-          <span>Nearby Jobs</span>
-        </div>
-      </a>
+      <div class="action-tile" style="--clr:#10b981;">
+        <div class="action-tile-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <span>Find Jobs</span>
+      </div>
+      <div class="action-tile" style="--clr:#f59e0b;">
+        <div class="action-tile-icon"><i class="fa-solid fa-file-alt"></i></div>
+        <span>Applications</span>
+      </div>
+      <div class="action-tile" style="--clr:#3b82f6;">
+        <div class="action-tile-icon"><i class="fa-solid fa-star"></i></div>
+        <span>My Profile</span>
+      </div>
+      <div class="action-tile" style="--clr:#059669;">
+        <div class="action-tile-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+        <span>Nearby Jobs</span>
+      </div>
     </div>
 
     <!-- Recent Activity -->
@@ -332,16 +320,16 @@ function farmTip(int $code): string {
       <span>Labour</span>
     </a>
     <?php else: ?>
-    <a href="find-jobs.php" class="bottom-nav-item" id="bnSearch">
+    <a href="#" class="bottom-nav-item" id="bnSearch">
       <i class="fa-solid fa-magnifying-glass"></i>
       <span>Find Jobs</span>
     </a>
-    <a href="applications.php" class="bottom-nav-item" id="bnApply">
+    <a href="#" class="bottom-nav-item" id="bnApply">
       <i class="fa-solid fa-file-alt"></i>
       <span>Applied</span>
     </a>
     <?php endif; ?>
-    <a href="alerts.php" class="bottom-nav-item" id="bnNotif">
+    <a href="#" class="bottom-nav-item" id="bnNotif">
       <i class="fa-solid fa-bell"></i>
       <span>Alerts</span>
       <span class="bn-dot"></span>
@@ -365,6 +353,5 @@ function closeDrawer() {
   document.getElementById('drawerOverlay').classList.remove('active');
 }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

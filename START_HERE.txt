@@ -1,0 +1,119 @@
+╔════════════════════════════════════════════════════════════════╗
+║                                                                ║
+║              LABOURLINK - START HERE                           ║
+║              Deployment for labourlink.labxco.cloud            ║
+║                                                                ║
+╚════════════════════════════════════════════════════════════════╝
+
+
+YOUR SITUATION:
+===============
+✓ Subdomain: labourlink.labxco.cloud
+✓ App location: public_html/labourlink/ (not root!)
+✓ Need: Redirect from root + proper configuration
+
+
+WHAT TO DO NOW:
+===============
+
+1. RUN DEPLOYMENT SCRIPT
+   ----------------------
+   Windows users: Double-click deploy.bat
+   Mac/Linux users: Run ./deploy.sh in terminal
+   
+   This creates: labourlink-deploy/ folder
+
+
+2. CHOOSE YOUR GUIDE
+   ------------------
+   Pick ONE guide based on your experience:
+
+   🟢 NEW TO DEPLOYMENT?
+      → Open: VISUAL_GUIDE.md
+      → Has: Step-by-step with diagrams
+      → Best for: First-time deployers
+
+   🟡 WANT QUICK REFERENCE?
+      → Open: DEPLOYMENT_CARD.txt
+      → Has: Checklist format
+      → Best for: Quick lookup
+
+   🔵 NEED DETAILED GUIDE?
+      → Open: QUICK_START.md
+      → Has: Complete instructions
+      → Best for: Thorough deployment
+
+   ⚪ WANT FULL DOCUMENTATION?
+      → Open: DEPLOYMENT.md
+      → Has: Everything explained
+      → Best for: Understanding details
+
+
+3. FOLLOW THE GUIDE
+   -----------------
+   All guides cover the same 6 steps:
+   
+   ① Prepare files (done by script)
+   ② Update config.php with database info
+   ③ Upload app files to /labourlink/
+   ④ Upload redirect to /public_html/
+   ⑤ Import database
+   ⑥ Test your site
+
+
+QUICK OVERVIEW:
+===============
+
+Files go to TWO locations:
+
+Location 1: /public_html/labourlink/
+   → All your app files
+   → From: labourlink-deploy/ folder
+
+Location 2: /public_html/
+   → Just one file: .htaccess
+   → From: redirect.htaccess (rename it!)
+   → Purpose: Redirects visitors to /labourlink/
+
+
+WHAT YOU NEED:
+==============
+□ Hostinger login credentials
+□ Database name, username, password
+□ FTP client (optional) or use File Manager
+□ 15-20 minutes
+
+
+AFTER DEPLOYMENT:
+=================
+Your site will be accessible at:
+→ https://labourlink.labxco.cloud/
+
+It will automatically redirect to:
+→ https://labourlink.labxco.cloud/labourlink/
+
+
+NEED HELP?
+==========
+All guides are in labourlink-deploy/ folder:
+
+📄 START_HERE.txt ← You are here
+📄 DEPLOYMENT_CARD.txt ← Quick checklist
+📄 VISUAL_GUIDE.md ← Step-by-step with diagrams
+📄 QUICK_START.md ← Fast deployment guide
+📄 SETUP_INSTRUCTIONS.txt ← Quick reference
+📄 DEPLOYMENT.md ← Detailed instructions
+📄 DEPLOYMENT_CHECKLIST.md ← Complete verification
+📄 README_DEPLOYMENT.md ← Package overview
+
+
+═══════════════════════════════════════════════════════════════
+
+                    READY TO START?
+
+1. Run: deploy.bat (or ./deploy.sh)
+2. Open: VISUAL_GUIDE.md (recommended for first-timers)
+3. Follow the steps
+4. Your site will be live!
+
+═══════════════════════════════════════════════════════════════

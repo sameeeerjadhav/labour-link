@@ -1,0 +1,103 @@
+╔════════════════════════════════════════════════════════════════╗
+║         LabourLink - Hostinger Deployment Instructions        ║
+║              For: labourlink.labxco.cloud                      ║
+╚════════════════════════════════════════════════════════════════╝
+
+YOUR CURRENT STRUCTURE: public_html/labourlink/
+
+QUICK SETUP STEPS:
+==================
+
+1. PREPARE FILES
+   ----------------
+   Windows: Run deploy.bat
+   Linux/Mac: Run ./deploy.sh
+   
+   This creates: labourlink-deploy/ folder
+
+2. UPDATE DATABASE CONFIG
+   -----------------------
+   Edit: labourlink-deploy/config.php
+   
+   Change these lines:
+   define('DB_HOST', 'localhost');
+   define('DB_USER', 'your_hostinger_username');
+   define('DB_PASS', 'your_hostinger_password');
+   define('DB_NAME', 'your_database_name');
+
+3. UPLOAD FILES TO HOSTINGER
+   ---------------------------
+   Upload labourlink-deploy/ contents to:
+   → /public_html/labourlink/
+   
+   Your structure should be:
+   /public_html/
+   ├── labourlink/
+   │   ├── .htaccess
+   │   ├── index.php
+   │   ├── config.php
+   │   ├── (all other files)
+   │   ├── api/
+   │   └── assets/
+
+4. SETUP ROOT REDIRECT
+   --------------------
+   Upload: redirect.htaccess
+   To: /public_html/
+   Rename to: .htaccess
+   
+   This makes labourlink.labxco.cloud/ redirect to /labourlink/
+
+5. IMPORT DATABASE
+   ----------------
+   - Login to Hostinger cPanel
+   - Open phpMyAdmin
+   - Create database (or use existing)
+   - Import: SETUP_QUERIES.sql
+
+6. TEST YOUR SITE
+   ---------------
+   Visit: https://labourlink.labxco.cloud/
+   
+   Should redirect to: https://labourlink.labxco.cloud/labourlink/
+   You should see the login page
+
+7. VERIFY EVERYTHING WORKS
+   ------------------------
+   ✓ Login page loads with styles
+   ✓ Can register new account
+   ✓ Receive OTP (check console)
+   ✓ Can verify and login
+   ✓ Dashboard displays correctly
+   ✓ Navigation works
+   ✓ All pages accessible
+
+IMPORTANT FILES:
+================
+- .htaccess (in /labourlink/) → App security
+- redirect.htaccess → Rename to .htaccess in /public_html/
+- config.php → Database credentials
+- SETUP_QUERIES.sql → Database schema
+
+TROUBLESHOOTING:
+================
+Problem: Can't access site
+Solution: Check both .htaccess files uploaded
+
+Problem: Database error
+Solution: Verify config.php credentials
+
+Problem: Styles not loading
+Solution: Clear cache, check /labourlink/assets/ folder
+
+Problem: 404 errors
+Solution: Ensure .htaccess in /labourlink/ has RewriteBase /labourlink/
+
+NEED HELP?
+==========
+See detailed guides:
+- QUICK_START.md
+- DEPLOYMENT.md
+- DEPLOYMENT_CHECKLIST.md
+
+═══════════════════════════════════════════════════════════════

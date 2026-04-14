@@ -5,7 +5,7 @@ if ($_SESSION['role'] !== 'farmer') { header('Location: dashboard.php'); exit; }
 
 $username = htmlspecialchars($_SESSION['username'] ?? 'User');
 $initials = strtoupper(substr($username, 0, 2));
-$navGradient = 'linear-gradient(135deg,#10b981,#059669)';
+$navGradient = 'linear-gradient(135deg,#6c63ff,#3b82f6)';
 
 $success = '';
 $error = '';
@@ -75,12 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   background: #f4f4fb;
 }
 
-@media (max-width: 479px) {
-  .form-container {
-    padding-bottom: 120px !important;
-  }
-}
-
 .form-section {
   background: #fff;
   border-radius: 16px;
@@ -100,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 .section-title i {
-  color: #10b981;
+  color: #6c63ff;
   font-size: 1rem;
 }
 
@@ -138,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 .form-select:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #10b981;
+  border-color: #6c63ff;
 }
 
 .form-textarea {
@@ -161,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 .submit-btn {
   width: 100%;
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, #6c63ff, #3b82f6);
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -204,9 +198,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 .location-btn {
-  background: #f0fdf4;
-  color: #10b981;
-  border: 1.5px solid #d1fae5;
+  background: #f5f4ff;
+  color: #6c63ff;
+  border: 1.5px solid #e0dfff;
   border-radius: 10px;
   padding: 10px 14px;
   font-size: 0.8rem;
@@ -221,7 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 .location-btn:hover {
-  background: #10b981;
+  background: #6c63ff;
   color: #fff;
 }
 
@@ -241,63 +235,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <!-- ── TOP NAVBAR ── -->
   <nav class="dash-nav" style="background:<?= $navGradient ?>">
-    <button class="hamburger-btn" id="hamburgerBtn" onclick="openDrawer()" title="Menu">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+    <a href="dashboard.php" class="hamburger-btn" title="Back">
+      <i class="fa-solid fa-arrow-left"></i>
+    </a>
     <div class="dash-nav-brand">
       <i class="fa-solid fa-plus-circle"></i>
       <span>Post a Job</span>
     </div>
-    <a href="dashboard.php" class="nav-icon-btn" title="Home">
-      <i class="fa-solid fa-house"></i>
-    </a>
+    <div class="dash-nav-right"></div>
   </nav>
-
-  <!-- ── SIDE DRAWER ── -->
-  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
-  <div class="side-drawer" id="sideDrawer">
-    <div class="drawer-header" style="background:<?= $navGradient ?>">
-      <div class="drawer-avatar"><?= $initials ?></div>
-      <div>
-        <div class="drawer-name"><?= $username ?></div>
-        <div class="drawer-role">Farmer</div>
-      </div>
-      <button class="drawer-close" onclick="closeDrawer()"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <nav class="drawer-nav">
-      <a href="dashboard.php" class="drawer-link">
-        <i class="fa-solid fa-house"></i> Home
-      </a>
-      <a href="profile.php" class="drawer-link">
-        <i class="fa-solid fa-user"></i> My Profile
-      </a>
-      <a href="post-job.php" class="drawer-link active">
-        <i class="fa-solid fa-plus-circle"></i> Post a Job
-      </a>
-      <a href="find-labour.php" class="drawer-link">
-        <i class="fa-solid fa-users"></i> Find Labour
-      </a>
-      <a href="my-listings.php" class="drawer-link">
-        <i class="fa-solid fa-list-check"></i> My Listings
-      </a>
-      <a href="schedule.php" class="drawer-link">
-        <i class="fa-solid fa-calendar-days"></i> Schedule
-      </a>
-      <a href="profile.php?tab=settings" class="drawer-link">
-        <i class="fa-solid fa-gear"></i> Settings
-      </a>
-      <a href="alerts.php" class="drawer-link">
-        <i class="fa-solid fa-bell"></i> Notifications
-      </a>
-      <a href="#" class="drawer-link" onclick="closeDrawer(); return false;">
-        <i class="fa-solid fa-circle-question"></i> Help & Support
-      </a>
-      <div class="drawer-divider"></div>
-      <a href="dashboard.php?logout=1" class="drawer-link drawer-logout">
-        <i class="fa-solid fa-right-from-bracket"></i> Logout
-      </a>
-    </nav>
-  </div>
 
   <!-- ── SCROLLABLE CONTENT ── -->
   <div class="scrollable-content">
@@ -497,7 +443,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <i class="fa-solid fa-house"></i>
       <span>Home</span>
     </a>
-    <a href="post-job.php" class="bottom-nav-item active">
+    <a href="#" class="bottom-nav-item active">
       <i class="fa-solid fa-briefcase"></i>
       <span>My Jobs</span>
     </a>
@@ -505,7 +451,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <i class="fa-solid fa-users"></i>
       <span>Labour</span>
     </a>
-    <a href="alerts.php" class="bottom-nav-item">
+    <a href="#" class="bottom-nav-item">
       <i class="fa-solid fa-bell"></i>
       <span>Alerts</span>
     </a>
@@ -581,17 +527,5 @@ document.getElementById('jobForm').addEventListener('submit', function(e) {
   }
 });
 </script>
-<script>
-function openDrawer() {
-  document.getElementById('sideDrawer').classList.add('open');
-  document.getElementById('drawerOverlay').classList.add('active');
-}
-
-function closeDrawer() {
-  document.getElementById('sideDrawer').classList.remove('open');
-  document.getElementById('drawerOverlay').classList.remove('active');
-}
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

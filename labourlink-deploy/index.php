@@ -8,13 +8,13 @@ if (isset($_SESSION['user_id'])) header('Location: dashboard.php');
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>LabourLink – Register</title>
+<title>LabourLink – Login</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="assets/style.css">
 </head>
-<body class="farmer-theme">
+<body>
 
 <div class="phone-shell">
 
@@ -24,22 +24,22 @@ if (isset($_SESSION['user_id'])) header('Location: dashboard.php');
       <i class="fa-solid fa-seedling text-white" style="font-size:1.8rem;"></i>
     </div>
     <h1>LabourLink</h1>
-    <p>Create your account</p>
+    <p>Sign in to continue</p>
   </div>
 
   <!-- Form Area -->
   <div class="form-area">
 
-    <p class="section-title">Register</p>
-    <p class="section-sub">Choose your role and fill in your details</p>
+    <p class="section-title">Login</p>
+    <p class="section-sub">Select your role and enter credentials</p>
 
     <!-- Alert -->
-    <div class="alert-custom alert-error" id="regAlert">
+    <div class="alert-custom alert-error" id="loginAlert">
       <i class="fa-solid fa-circle-exclamation"></i>
-      <span id="regAlertMsg"></span>
+      <span id="loginAlertMsg"></span>
     </div>
 
-    <form id="regForm" novalidate>
+    <form id="loginForm" novalidate>
 
       <!-- Role Selector -->
       <div class="role-selector">
@@ -55,49 +55,29 @@ if (isset($_SESSION['user_id'])) header('Location: dashboard.php');
         </label>
       </div>
 
-      <!-- Full Name -->
-      <div class="input-group-custom">
-        <i class="fa-solid fa-id-card input-icon"></i>
-        <input type="text" name="full_name" placeholder="Full Name" autocomplete="name" required>
-      </div>
-
-      <!-- Email -->
-      <div class="input-group-custom">
-        <i class="fa-solid fa-envelope input-icon"></i>
-        <input type="email" name="email" placeholder="Email Address" autocomplete="email" required>
-      </div>
-
-      <!-- Phone -->
-      <div class="input-group-custom">
-        <i class="fa-solid fa-phone input-icon"></i>
-        <input type="tel" name="phone" placeholder="Phone Number" autocomplete="tel" required>
-      </div>
-
       <!-- Username -->
       <div class="input-group-custom">
-        <i class="fa-solid fa-at input-icon"></i>
-        <input type="text" name="username" placeholder="Username" autocomplete="username" required>
+        <i class="fa-solid fa-user input-icon"></i>
+        <input type="text" id="loginUsername" name="username" placeholder="Username" autocomplete="username" required>
       </div>
 
       <!-- Password -->
       <div class="input-group-custom">
         <i class="fa-solid fa-lock input-icon"></i>
-        <input type="password" id="regPassword" name="password" placeholder="Password" autocomplete="new-password"
-               oninput="checkStrength(this.value)" required>
-        <button type="button" class="toggle-pass" onclick="togglePass('regPassword', this)">
+        <input type="password" id="loginPassword" name="password" placeholder="Password" autocomplete="current-password" required>
+        <button type="button" class="toggle-pass" onclick="togglePass('loginPassword', this)">
           <i class="fa-solid fa-eye"></i>
         </button>
       </div>
 
-      <!-- Strength Bar -->
-      <div class="strength-bar">
-        <div class="strength-fill" id="strengthFill"></div>
+      <div class="text-end mb-3">
+        <a href="#" style="font-size:0.82rem; color:#6c63ff; text-decoration:none;">Forgot password?</a>
       </div>
 
-      <button type="submit" class="btn-primary-custom" id="regBtn">
-        <span id="regBtnText">Create Account</span>
-        <span id="regSpinner" class="d-none">
-          <i class="fa-solid fa-spinner fa-spin me-2"></i>Creating...
+      <button type="submit" class="btn-primary-custom" id="loginBtn">
+        <span id="loginBtnText">Sign In</span>
+        <span id="loginSpinner" class="d-none">
+          <i class="fa-solid fa-spinner fa-spin me-2"></i>Signing in...
         </span>
       </button>
 
@@ -106,23 +86,19 @@ if (isset($_SESSION['user_id'])) header('Location: dashboard.php');
     <div class="divider">or</div>
 
     <div class="switch-link">
-      Already have an account? <a href="index.php">Sign in</a>
+      Don't have an account? <a href="register.php">Create one</a>
     </div>
 
   </div>
 </div>
 
 <script>
-// Role card toggle with theme switching
+// Role card toggle
 document.querySelectorAll('.role-card').forEach(card => {
   card.addEventListener('click', () => {
     document.querySelectorAll('.role-card').forEach(c => c.classList.remove('active'));
     card.classList.add('active');
     card.querySelector('input[type=radio]').checked = true;
-    
-    // Switch theme based on role
-    const role = card.querySelector('input[type=radio]').value;
-    document.body.className = role === 'farmer' ? 'farmer-theme' : 'labour-theme';
   });
 });
 
@@ -138,51 +114,40 @@ function togglePass(id, btn) {
   }
 }
 
-function checkStrength(val) {
-  const fill = document.getElementById('strengthFill');
-  let score  = 0;
-  if (val.length >= 8)           score++;
-  if (/[A-Z]/.test(val))         score++;
-  if (/[0-9]/.test(val))         score++;
-  if (/[^A-Za-z0-9]/.test(val))  score++;
-  const map = ['0%','25%','50%','75%','100%'];
-  const col = ['#e8e8f0','#ef4444','#f59e0b','#3b82f6','#10b981'];
-  fill.style.width      = map[score];
-  fill.style.background = col[score];
-}
-
 function showAlert(id, msgId, msg, type = 'error') {
   const el = document.getElementById(id);
   el.className = `alert-custom alert-${type} show`;
   document.getElementById(msgId).textContent = msg;
 }
 
-document.getElementById('regForm').addEventListener('submit', async function(e) {
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const btn     = document.getElementById('regBtn');
-  const btnText = document.getElementById('regBtnText');
-  const spinner = document.getElementById('regSpinner');
+  const btn     = document.getElementById('loginBtn');
+  const btnText = document.getElementById('loginBtnText');
+  const spinner = document.getElementById('loginSpinner');
 
   btnText.classList.add('d-none');
   spinner.classList.remove('d-none');
   btn.classList.add('loading');
 
   const data = new FormData(this);
-  data.append('action', 'register');
+  data.append('action', 'login');
 
   try {
     const res  = await fetch('auth.php', { method: 'POST', body: data });
     const json = await res.json();
 
     if (json.status === 'success') {
+      showAlert('loginAlert', 'loginAlertMsg', 'Login successful! Redirecting...', 'success');
+      setTimeout(() => window.location.href = 'dashboard.php', 1000);
+    } else if (json.status === 'verify') {
       sessionStorage.setItem('otp_dev', json.otp_dev || '');
-      showAlert('regAlert', 'regAlertMsg', 'Account created! Redirecting to verify...', 'success');
-      setTimeout(() => window.location.href = 'verify.php', 1200);
+      window.location.href = 'verify.php';
     } else {
-      showAlert('regAlert', 'regAlertMsg', json.message);
+      showAlert('loginAlert', 'loginAlertMsg', json.message);
     }
   } catch {
-    showAlert('regAlert', 'regAlertMsg', 'Network error. Please try again.');
+    showAlert('loginAlert', 'loginAlertMsg', 'Network error. Please try again.');
   } finally {
     btnText.classList.remove('d-none');
     spinner.classList.add('d-none');
@@ -190,6 +155,5 @@ document.getElementById('regForm').addEventListener('submit', async function(e) 
   }
 });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

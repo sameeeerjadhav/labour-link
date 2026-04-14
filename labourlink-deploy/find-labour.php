@@ -5,7 +5,7 @@ if ($_SESSION['role'] !== 'farmer') { header('Location: dashboard.php'); exit; }
 
 $username = htmlspecialchars($_SESSION['username'] ?? 'User');
 $initials = strtoupper(substr($username, 0, 2));
-$navGradient = 'linear-gradient(135deg,#10b981,#059669)';
+$navGradient = 'linear-gradient(135deg,#6c63ff,#3b82f6)';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,8 +26,16 @@ $navGradient = 'linear-gradient(135deg,#10b981,#059669)';
   overflow: hidden;
 }
 
+.scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.scrollable-content::-webkit-scrollbar { display: none; }
+
 .search-header {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, #6c63ff, #3b82f6);
   padding: 20px 18px;
   color: #fff;
   flex-shrink: 0;
@@ -76,16 +84,16 @@ $navGradient = 'linear-gradient(135deg,#10b981,#059669)';
   padding: 6px 14px;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #10b981;
+  color: #6c63ff;
   white-space: nowrap;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .filter-chip.active {
-  background: #10b981;
+  background: #6c63ff;
   color: #fff;
-  border-color: #10b981;
+  border-color: #6c63ff;
 }
 
 .labour-list {
@@ -174,7 +182,7 @@ $navGradient = 'linear-gradient(135deg,#10b981,#059669)';
 }
 
 .contact-btn {
-  background: #10b981;
+  background: #6c63ff;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -245,9 +253,9 @@ $navGradient = 'linear-gradient(135deg,#10b981,#059669)';
 
   <!-- ── TOP NAVBAR ── -->
   <nav class="dash-nav" style="background:<?= $navGradient ?>">
-    <button class="hamburger-btn" id="hamburgerBtn" onclick="openDrawer()" title="Menu">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+    <a href="dashboard.php" class="hamburger-btn" title="Back">
+      <i class="fa-solid fa-arrow-left"></i>
+    </a>
     <div class="dash-nav-brand">
       <i class="fa-solid fa-users"></i>
       <span>Find Labour</span>
@@ -258,52 +266,6 @@ $navGradient = 'linear-gradient(135deg,#10b981,#059669)';
       </button>
     </div>
   </nav>
-
-  <!-- ── SIDE DRAWER ── -->
-  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
-  <div class="side-drawer" id="sideDrawer">
-    <div class="drawer-header" style="background:<?= $navGradient ?>">
-      <div class="drawer-avatar"><?= $initials ?></div>
-      <div>
-        <div class="drawer-name"><?= $username ?></div>
-        <div class="drawer-role">Farmer</div>
-      </div>
-      <button class="drawer-close" onclick="closeDrawer()"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <nav class="drawer-nav">
-      <a href="dashboard.php" class="drawer-link">
-        <i class="fa-solid fa-house"></i> Home
-      </a>
-      <a href="profile.php" class="drawer-link">
-        <i class="fa-solid fa-user"></i> My Profile
-      </a>
-      <a href="post-job.php" class="drawer-link">
-        <i class="fa-solid fa-plus-circle"></i> Post a Job
-      </a>
-      <a href="find-labour.php" class="drawer-link active">
-        <i class="fa-solid fa-users"></i> Find Labour
-      </a>
-      <a href="my-listings.php" class="drawer-link">
-        <i class="fa-solid fa-list-check"></i> My Listings
-      </a>
-      <a href="schedule.php" class="drawer-link">
-        <i class="fa-solid fa-calendar-days"></i> Schedule
-      </a>
-      <a href="profile.php?tab=settings" class="drawer-link">
-        <i class="fa-solid fa-gear"></i> Settings
-      </a>
-      <a href="alerts.php" class="drawer-link">
-        <i class="fa-solid fa-bell"></i> Notifications
-      </a>
-      <a href="#" class="drawer-link" onclick="closeDrawer(); return false;">
-        <i class="fa-solid fa-circle-question"></i> Help & Support
-      </a>
-      <div class="drawer-divider"></div>
-      <a href="dashboard.php?logout=1" class="drawer-link drawer-logout">
-        <i class="fa-solid fa-right-from-bracket"></i> Logout
-      </a>
-    </nav>
-  </div>
 
   <!-- ── SCROLLABLE CONTENT ── -->
   <div class="scrollable-content">
@@ -340,7 +302,7 @@ $navGradient = 'linear-gradient(135deg,#10b981,#059669)';
       <i class="fa-solid fa-house"></i>
       <span>Home</span>
     </a>
-    <a href="post-job.php" class="bottom-nav-item">
+    <a href="#" class="bottom-nav-item">
       <i class="fa-solid fa-briefcase"></i>
       <span>My Jobs</span>
     </a>
@@ -348,7 +310,7 @@ $navGradient = 'linear-gradient(135deg,#10b981,#059669)';
       <i class="fa-solid fa-users"></i>
       <span>Labour</span>
     </a>
-    <a href="alerts.php" class="bottom-nav-item">
+    <a href="#" class="bottom-nav-item">
       <i class="fa-solid fa-bell"></i>
       <span>Alerts</span>
     </a>
@@ -528,17 +490,5 @@ function contactLabour(phone) {
   window.location.href = 'tel:' + phone;
 }
 </script>
-<script>
-function openDrawer() {
-  document.getElementById('sideDrawer').classList.add('open');
-  document.getElementById('drawerOverlay').classList.add('active');
-}
-
-function closeDrawer() {
-  document.getElementById('sideDrawer').classList.remove('open');
-  document.getElementById('drawerOverlay').classList.remove('active');
-}
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

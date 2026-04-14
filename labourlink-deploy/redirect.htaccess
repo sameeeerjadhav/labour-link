@@ -1,0 +1,18 @@
+# Place this file in public_html/ and rename to .htaccess
+# This redirects root domain to /labourlink/ subdirectory
+
+RewriteEngine On
+RewriteBase /
+
+# Redirect to HTTPS (optional but recommended)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect root to /labourlink/
+RewriteCond %{REQUEST_URI} !^/labourlink/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /labourlink/$1 [L,R=301]
+
+# If accessing root directly, redirect to /labourlink/
+RewriteRule ^$ /labourlink/ [L,R=301]

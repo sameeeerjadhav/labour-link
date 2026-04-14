@@ -16,9 +16,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  height: 100dvh; /* Dynamic viewport height for mobile browsers */
   max-height: 100vh;
-  max-height: 100dvh;
   width: 100%;
   max-width: 420px;
   position: relative;
@@ -235,17 +233,17 @@ body {
 
 .drawer-link:hover,
 .drawer-link.active {
-  background: #f0fdf4;
-  color: #10b981;
+  background: #f5f4ff;
+  color: #6c63ff;
 }
 
 .drawer-link:hover i,
-.drawer-link.active i { color: #10b981; }
+.drawer-link.active i { color: #6c63ff; }
 
 .labour-theme .drawer-link:hover,
-.labour-theme .drawer-link.active { background: #fff7ed; color: #f97316; }
+.labour-theme .drawer-link.active { background: #f0fdf4; color: #10b981; }
 .labour-theme .drawer-link:hover i,
-.labour-theme .drawer-link.active i { color: #f97316; }
+.labour-theme .drawer-link.active i { color: #10b981; }
 
 .drawer-divider {
   height: 1px;
@@ -266,7 +264,6 @@ body {
   background: #f4f4fb;
   -webkit-overflow-scrolling: touch;
   position: relative;
-  z-index: 1;
 }
 
 .dash-body::-webkit-scrollbar { 
@@ -282,7 +279,6 @@ body {
   flex-direction: column;
   -webkit-overflow-scrolling: touch;
   position: relative;
-  z-index: 1;
 }
 
 .scrollable-content::-webkit-scrollbar { 
@@ -291,17 +287,13 @@ body {
 
 /* ── Welcome Banner ───────────────────────────────── */
 .welcome-banner {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, #6c63ff, #3b82f6);
   border-radius: 18px;
   padding: 20px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 18px;
-}
-
-.labour-theme .welcome-banner {
-  background: linear-gradient(135deg, #f97316, #ea580c);
 }
 
 .welcome-greeting {
@@ -511,7 +503,6 @@ body {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  margin-bottom: 20px;
 }
 
 .activity-empty {
@@ -531,13 +522,6 @@ body {
   color: #aaa;
 }
 
-/* Mobile fix for last element */
-@media (max-width: 479px) {
-  .activity-list {
-    margin-bottom: 40px;
-  }
-}
-
 /* ── Bottom Navigation ────────────────────────────── */
 .bottom-nav {
   display: flex;
@@ -547,36 +531,11 @@ body {
   border-top: 1px solid #efefef;
   padding: 8px 0;
   flex-shrink: 0;
-  position: sticky;
-  bottom: 0;
-  z-index: 150;
+  position: relative;
+  z-index: 100;
   min-height: 60px;
   height: 60px;
   box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-}
-
-/* Ensure bottom nav is always visible on mobile */
-@media (max-width: 479px) {
-  .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
-    z-index: 250;
-  }
-  
-  /* Add padding to dash-body to prevent content from being hidden behind bottom nav */
-  .dash-body {
-    padding-bottom: 120px !important;
-  }
-  
-  /* Also add padding to scrollable-content */
-  .scrollable-content {
-    padding-bottom: 120px !important;
-  }
 }
 
 .bottom-nav-item {
@@ -592,9 +551,6 @@ body {
   border-radius: 12px;
   transition: color 0.2s;
   position: relative;
-  cursor: pointer;
-  pointer-events: auto;
-  -webkit-tap-highlight-color: rgba(0,0,0,0.1);
 }
 
 .bottom-nav-item i {
@@ -603,19 +559,19 @@ body {
 }
 
 .bottom-nav-item.active {
-  color: #10b981;
+  color: #6c63ff;
 }
 
 .bottom-nav-item.active i {
   transform: translateY(-2px);
 }
 
-/* orange active for labour */
+/* green active for labour */
 .labour-theme .bottom-nav-item.active {
-  color: #f97316;
+  color: #10b981;
 }
 .labour-theme .bottom-nav-item.active i {
-  color: #f97316;
+  color: #10b981;
 }
 
 /* notification dot on bell */

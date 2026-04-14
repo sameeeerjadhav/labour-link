@@ -152,14 +152,3 @@
   background: #ef4444;
   color: #fff;
 }
-
-/* ── Mobile Fixes ─────────────────────────────────── */
-@media (max-width: 479px) {
-  .logout-full-btn {
-    margin-bottom: 30px;
-  }
-  
-  .edit-card {
-    margin-bottom: 30px;
-  }
-}

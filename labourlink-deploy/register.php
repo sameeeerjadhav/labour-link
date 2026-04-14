@@ -14,7 +14,7 @@ if (isset($_SESSION['user_id'])) header('Location: dashboard.php');
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="assets/style.css">
 </head>
-<body class="farmer-theme">
+<body>
 
 <div class="phone-shell">
 
@@ -113,16 +113,12 @@ if (isset($_SESSION['user_id'])) header('Location: dashboard.php');
 </div>
 
 <script>
-// Role card toggle with theme switching
+// Role card toggle
 document.querySelectorAll('.role-card').forEach(card => {
   card.addEventListener('click', () => {
     document.querySelectorAll('.role-card').forEach(c => c.classList.remove('active'));
     card.classList.add('active');
     card.querySelector('input[type=radio]').checked = true;
-    
-    // Switch theme based on role
-    const role = card.querySelector('input[type=radio]').value;
-    document.body.className = role === 'farmer' ? 'farmer-theme' : 'labour-theme';
   });
 });
 
@@ -190,6 +186,5 @@ document.getElementById('regForm').addEventListener('submit', async function(e) 
   }
 });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

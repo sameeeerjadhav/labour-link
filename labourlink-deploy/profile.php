@@ -21,9 +21,9 @@ $joinedAt  = date('d M Y', strtotime($user['created_at']));
 $isFarmer  = $role === 'farmer';
 $initials  = strtoupper(substr($fullName, 0, 2));
 $navGradient = $isFarmer
-    ? 'linear-gradient(135deg,#10b981,#059669)'
-    : 'linear-gradient(135deg,#f97316,#ea580c)';
-$accentColor = $isFarmer ? '#10b981' : '#f97316';
+    ? 'linear-gradient(135deg,#6c63ff,#3b82f6)'
+    : 'linear-gradient(135deg,#10b981,#059669)';
+$accentColor = $isFarmer ? '#6c63ff' : '#10b981';
 
 // Handle profile update
 $successMsg = '';
@@ -66,67 +66,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
 
   <!-- TOP NAVBAR -->
   <nav class="dash-nav" style="background:<?= $navGradient ?>">
-    <button class="hamburger-btn" id="hamburgerBtn" onclick="openDrawer()" title="Menu">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+    <a href="dashboard.php" class="nav-back-btn">
+      <i class="fa-solid fa-arrow-left"></i>
+    </a>
     <div class="dash-nav-brand">
-      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-seedling"></i>
       <span>My Profile</span>
     </div>
     <a href="dashboard.php?logout=1" class="nav-icon-btn" title="Logout" style="text-decoration:none;">
       <i class="fa-solid fa-right-from-bracket"></i>
     </a>
   </nav>
-
-  <!-- ── SIDE DRAWER ── -->
-  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
-  <div class="side-drawer" id="sideDrawer">
-    <div class="drawer-header" style="background:<?= $navGradient ?>">
-      <div class="drawer-avatar"><?= $initials ?></div>
-      <div>
-        <div class="drawer-name"><?= $fullName ?></div>
-        <div class="drawer-role"><?= $isFarmer ? 'Farmer' : 'Labour' ?></div>
-      </div>
-      <button class="drawer-close" onclick="closeDrawer()"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <nav class="drawer-nav">
-      <a href="dashboard.php" class="drawer-link">
-        <i class="fa-solid fa-house"></i> Home
-      </a>
-      <a href="profile.php" class="drawer-link active">
-        <i class="fa-solid fa-user"></i> My Profile
-      </a>
-      <?php if ($isFarmer): ?>
-      <a href="post-job.php" class="drawer-link">
-        <i class="fa-solid fa-plus-circle"></i> Post a Job
-      </a>
-      <a href="find-labour.php" class="drawer-link">
-        <i class="fa-solid fa-users"></i> Find Labour
-      </a>
-      <a href="my-listings.php" class="drawer-link">
-        <i class="fa-solid fa-list-check"></i> My Listings
-      </a>
-      <a href="schedule.php" class="drawer-link">
-        <i class="fa-solid fa-calendar-days"></i> Schedule
-      </a>
-      <?php endif; ?>
-      <a href="profile.php?tab=settings" class="drawer-link">
-        <i class="fa-solid fa-gear"></i> Settings
-      </a>
-      <a href="alerts.php" class="drawer-link">
-        <i class="fa-solid fa-bell"></i> Notifications
-      </a>
-      <a href="#" class="drawer-link" onclick="closeDrawer(); return false;">
-        <i class="fa-solid fa-circle-question"></i> Help & Support
-      </a>
-      <div class="drawer-divider"></div>
-      <a href="dashboard.php?logout=1" class="drawer-link drawer-logout">
-        <i class="fa-solid fa-right-from-bracket"></i> Logout
-      </a>
-    </nav>
-  </div>
-
-  <!-- ── MAIN CONTENT ── -->
 
   <div class="dash-body" id="top">
 
@@ -237,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
       <span>Applied</span>
     </a>
     <?php endif; ?>
-    <a href="alerts.php" class="bottom-nav-item" id="bnNotif">
+    <a href="#" class="bottom-nav-item" id="bnNotif">
       <i class="fa-solid fa-bell"></i>
       <span>Alerts</span>
       <span class="bn-dot"></span>
@@ -257,17 +207,5 @@ window.addEventListener('load', () => {
 });
 <?php endif; ?>
 </script>
-<script>
-function openDrawer() {
-  document.getElementById('sideDrawer').classList.add('open');
-  document.getElementById('drawerOverlay').classList.add('active');
-}
-
-function closeDrawer() {
-  document.getElementById('sideDrawer').classList.remove('open');
-  document.getElementById('drawerOverlay').classList.remove('active');
-}
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
