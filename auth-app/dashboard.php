@@ -185,14 +185,18 @@ function farmTip(int $code): string {
     <!-- Quick Actions -->
     <p class="dash-section-title">Quick Actions</p>
     <div class="action-grid">
-      <div class="action-tile" style="--clr:#6c63ff;">
-        <div class="action-tile-icon"><i class="fa-solid fa-plus-circle"></i></div>
-        <span>Post a Job</span>
-      </div>
-      <div class="action-tile" style="--clr:#f59e0b;">
-        <div class="action-tile-icon"><i class="fa-solid fa-users"></i></div>
-        <span>Find Labour</span>
-      </div>
+      <a href="post-job.php" style="text-decoration:none;">
+        <div class="action-tile" style="--clr:#6c63ff;">
+          <div class="action-tile-icon"><i class="fa-solid fa-plus-circle"></i></div>
+          <span>Post a Job</span>
+        </div>
+      </a>
+      <a href="find-labour.php" style="text-decoration:none;">
+        <div class="action-tile" style="--clr:#f59e0b;">
+          <div class="action-tile-icon"><i class="fa-solid fa-users"></i></div>
+          <span>Find Labour</span>
+        </div>
+      </a>
       <div class="action-tile" style="--clr:#10b981;">
         <div class="action-tile-icon"><i class="fa-solid fa-list-check"></i></div>
         <span>My Listings</span>
@@ -307,11 +311,11 @@ function farmTip(int $code): string {
       <span>Home</span>
     </a>
     <?php if ($isFarmer): ?>
-    <a href="#" class="bottom-nav-item" id="bnJobs">
+    <a href="post-job.php" class="bottom-nav-item" id="bnJobs">
       <i class="fa-solid fa-briefcase"></i>
       <span>My Jobs</span>
     </a>
-    <a href="#" class="bottom-nav-item" id="bnLabour">
+    <a href="find-labour.php" class="bottom-nav-item" id="bnLabour">
       <i class="fa-solid fa-users"></i>
       <span>Labour</span>
     </a>
